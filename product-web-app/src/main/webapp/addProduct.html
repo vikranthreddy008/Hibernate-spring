@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HamaraDukan.com</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+          $(function(){
+	            $("#frm").submit(function(evt) {
+		             evt.preventDefault();
+		             
+		             var obj= {
+		            		 name : $("#name").val(),
+		            		 price : $("#price").val(),
+		            		 stock : $("#stock").val()
+		             }
+		             
+		            // alert(JSON.stringify(obj));
+		             $.ajax({
+		            url : 'app/product/add',
+		             method : 'POST',
+		             data : JSON.stringify(obj),
+		             contentType : 'application/json',
+		             success:function(response){
+		            	 alert(JSON.stringify(response));
+		            	 
+		             }
+		             
+		                  })
+                     })
+             	})
+    
+</script>
+</head>
+<body>
+<form id="frm">
+Name of the product : <input id="name"/> <br>
+Price of the product : <input id="price"/> <br>
+Available stock : <input id="stock"/> <br>
+<button type="submit">Add</button>
+<div id="productDetails"></div>
+</form>
+</body>
+</html>
